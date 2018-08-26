@@ -4,4 +4,4 @@ Mechanisms, extensions and resources related to Symfony Flash Messages (https://
 
 # 0.1.0
 
-1. Implement Docker, update Readme, add documentation, integrate with Travis CI
+1. Implement Docker, update Readme, add documentation, integrate with Travis CI, add composer.json
