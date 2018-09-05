@@ -12,3 +12,4 @@ Mechanisms, extensions and resources related to Symfony Flash Messages (https://
 6. Add .gitignore
 7. Add configuration of PHP Coding Standards Fixer
 8. Implement Phing
+9. Add PHPUnit configuration
