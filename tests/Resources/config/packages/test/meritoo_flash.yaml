@@ -1,0 +1,12 @@
+meritoo_flash:
+    css_classes:
+        container: all-flash-messages
+        one_flash_message: message %s-message-type single-row
+    flash_message_types:
+        available:
+            - positive
+            - negative
+            - information
+        positive: positive
+        negative: negative
+        neutral: information

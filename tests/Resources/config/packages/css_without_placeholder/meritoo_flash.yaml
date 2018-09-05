@@ -1,0 +1,4 @@
+meritoo_flash:
+    css_classes:
+        container: all-flash-messages
+        one_flash_message: message message-type single-row
