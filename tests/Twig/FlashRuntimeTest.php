@@ -21,6 +21,7 @@ use Meritoo\FlashBundle\Twig\FlashRuntime;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Templating\EngineInterface;
 
 /**
  * Test case for the runtime class related to FlashExtension Twig Extension
@@ -102,6 +103,32 @@ class FlashRuntimeTest extends KernelTestCase
             ->renderFlashMessagesFromSession();
 
         static::assertSame($expected, $rendered);
+    }
+
+    /**
+     * @param array $messages Flash messages to add
+     * @param bool  $expected Expected information if there are any flash messages
+     *
+     * @dataProvider provideFlashMessagesToVerifyExistenceUsingTestEnvironment
+     */
+    public function testHasFlashMessagesUsingTestEnvironment(array $messages, bool $expected): void
+    {
+        static::assertSame($expected, $this->getFlashRuntime($messages)->hasFlashMessages());
+    }
+
+    /**
+     * @param array $messages Flash messages to add
+     * @param bool  $expected Expected information if there are any flash messages
+     *
+     * @dataProvider provideFlashMessagesToVerifyExistenceUsingDefaults
+     */
+    public function testHasFlashMessagesUsingDefaults(array $messages, bool $expected): void
+    {
+        static::bootKernel([
+            'environment' => 'defaults',
+        ]);
+
+        static::assertSame($expected, $this->getFlashRuntime($messages)->hasFlashMessages());
     }
 
     /**
@@ -264,6 +291,84 @@ class FlashRuntimeTest extends KernelTestCase
     }
 
     /**
+     * Provide flash messages to verify existence
+     *
+     * @return \Generator
+     */
+    public function provideFlashMessagesToVerifyExistenceUsingTestEnvironment(): \Generator
+    {
+        yield[
+            [],
+            false,
+        ];
+
+        yield[
+            [
+                'negative' => 'Oops, not saved',
+            ],
+            true,
+        ];
+
+        yield[
+            [
+                'negative'    => 'Oops, not saved',
+                'information' => 'Try again',
+            ],
+            true,
+        ];
+
+        yield[
+            [
+                'positive'    => [
+                    'Saved',
+                    'Check your mailbox',
+                ],
+                'information' => 'You are registered user now',
+            ],
+            true,
+        ];
+    }
+
+    /**
+     * Provide flash messages to verify existence using default configuration
+     *
+     * @return \Generator
+     */
+    public function provideFlashMessagesToVerifyExistenceUsingDefaults(): \Generator
+    {
+        yield[
+            [],
+            false,
+        ];
+
+        yield[
+            [
+                'danger' => 'Oops, not saved',
+            ],
+            true,
+        ];
+
+        yield[
+            [
+                'danger' => 'Oops, not saved',
+                'info'   => 'Try again',
+            ],
+            true,
+        ];
+
+        yield[
+            [
+                'success' => [
+                    'Saved',
+                    'Check your mailbox',
+                ],
+                'info'    => 'You are registered user now',
+            ],
+            true,
+        ];
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function setUp()
@@ -291,6 +396,7 @@ class FlashRuntimeTest extends KernelTestCase
         $requestStack->method('getCurrentRequest')->willReturn($request);
 
         $session = static::$container->get('session');
+        /* @var EngineInterface $twigEngine */
         $twigEngine = static::$container->get('templating');
 
         $bundleName = Reflection::getClassName(MeritooFlashBundle::class, true);

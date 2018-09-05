@@ -144,4 +144,14 @@ class FlashRuntime implements RuntimeExtensionInterface
 
         return $this->renderFlashMessages($messages);
     }
+
+    /**
+     * Returns information if there are any flash messages to display (in bag/container stored in session)
+     *
+     * @return bool
+     */
+    public function hasFlashMessages(): bool
+    {
+        return $this->flashMessageService->hasFlashMessages();
+    }
 }

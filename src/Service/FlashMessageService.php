@@ -114,7 +114,7 @@ class FlashMessageService extends BaseService
     }
 
     /**
-     * Adds flash messages (to bag/container in session)
+     * Adds flash messages (to bag/container stored in session)
      *
      * @param array $messages Flash messages to add. Key-value pairs:
      *                        - key - type of flash message
@@ -141,7 +141,7 @@ class FlashMessageService extends BaseService
         $flashBag = $session->getFlashBag();
 
         /*
-         * Add flash messages (to bag/container in session)
+         * Add flash messages (to bag/container stored in session)
          */
         foreach ($messages as $type => $messagesOfType) {
             foreach ($messagesOfType as $message) {
@@ -153,7 +153,7 @@ class FlashMessageService extends BaseService
     }
 
     /**
-     * Adds positive flash messages (to bag/container in session)
+     * Adds positive flash messages (to bag/container stored in session)
      *
      * @param array $messages Flash messages to add. Without type, only texts.
      * @return FlashMessageService
@@ -166,7 +166,7 @@ class FlashMessageService extends BaseService
     }
 
     /**
-     * Adds negative flash messages (to bag/container in session)
+     * Adds negative flash messages (to bag/container stored in session)
      *
      * @param array $messages Flash messages to add. Without type, only texts.
      * @return FlashMessageService
@@ -179,7 +179,7 @@ class FlashMessageService extends BaseService
     }
 
     /**
-     * Adds neutral flash messages (to bag/container in session)
+     * Adds neutral flash messages (to bag/container stored in session)
      *
      * @param array $messages Flash messages to add. Without type, only texts.
      * @return FlashMessageService
@@ -231,6 +231,20 @@ class FlashMessageService extends BaseService
         }
 
         return $this;
+    }
+
+    /**
+     * Returns information if there are any flash messages to display (in bag/container stored in session)
+     *
+     * @return bool
+     */
+    public function hasFlashMessages(): bool
+    {
+        /* @var Session $session */
+        $session = $this->session;
+        $allMessages = $session->getFlashBag()->peekAll();
+
+        return \count($allMessages) > 0;
     }
 
     /**

@@ -6,6 +6,8 @@ Mechanisms, extensions and resources related to Symfony Flash Messages (https://
 
 1. Travis CI > update configuration (You are using the deprecated option "dev". Dev packages are installed by default
 now.)
+2. Twig function meritoo_flash_message_has_messages() > returns information if there are any flash messages to 
+display (in bag/container stored in session)
 
 # 0.1.0
 

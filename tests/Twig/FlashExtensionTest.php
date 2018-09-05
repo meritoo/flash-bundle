@@ -28,7 +28,7 @@ class FlashExtensionTest extends BaseTwigExtensionTestCase
             ->get($this->getExtensionNamespace())
             ->getFunctions();
 
-        static::assertCount(2, $functions);
+        static::assertCount(3, $functions);
     }
 
     public function testRenderMessagesWithoutMessages(): void

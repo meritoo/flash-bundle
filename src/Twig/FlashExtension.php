@@ -39,11 +39,16 @@ class FlashExtension extends AbstractExtension
                 FlashRuntime::class,
                 'renderFlashMessagesFromSession',
             ],
+            3 => [
+                FlashRuntime::class,
+                'hasFlashMessages',
+            ],
         ];
 
         return array_merge(parent::getFunctions(), [
             new TwigFunction('meritoo_flash_message_render_messages', $functions[1], $options),
             new TwigFunction('meritoo_flash_message_render_messages_from_session', $functions[2], $options),
+            new TwigFunction('meritoo_flash_message_has_messages', $functions[3]),
         ]);
     }
 }
