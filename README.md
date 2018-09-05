@@ -14,6 +14,23 @@ composer require meritoo/flash-bundle
 
 > [How to install Composer?](https://getcomposer.org/download)
 
+# Configuration
+
+All parameters have default values. After installation of this bundle, you have to do nothing. If you want to tweak 
+some of parameters, create proper configuration file and enter desired parameters.
+
+Example:
+
+```yaml
+# config/packages/meritoo_flash.yaml
+
+meritoo_flash:
+    css_classes:
+        container: middle-container flash-messages
+```
+
+[Read more](docs/Configuration.md)
+
 # Development
 
 More information [you can find here](docs/Development.md)
