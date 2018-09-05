@@ -13,3 +13,4 @@ Mechanisms, extensions and resources related to Symfony Flash Messages (https://
 7. Add configuration of PHP Coding Standards Fixer
 8. Implement Phing
 9. Add PHPUnit configuration
+10. Add main class of bundle
