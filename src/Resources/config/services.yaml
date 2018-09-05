@@ -16,6 +16,12 @@ services:
 
     # Parameters of services
     #
+    Meritoo\FlashBundle\Service\FlashMessageService:
+        arguments:
+            $availableFlashMessageTypes: '%meritoo_flash.flash_message_types.available%'
+            $positiveFlashMessageType: '%meritoo_flash.flash_message_types.positive%'
+            $negativeFlashMessageType: '%meritoo_flash.flash_message_types.negative%'
+            $neutralFlashMessageType: '%meritoo_flash.flash_message_types.neutral%'
     Meritoo\FlashBundle\Twig\ConfigurationRuntime:
         arguments:
             $containerCssClasses: '%meritoo_flash.css_classes.container%'
