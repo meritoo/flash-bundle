@@ -1,0 +1,11 @@
+{% spaceless %}
+    {% if messages is not empty %}
+        <div class="{{ meritoo_flash_container_css_classes() }}">
+            {% for type, messagesOfType in messages %}
+                {% for message in messagesOfType %}
+                    {% include '@MeritooFlash/single.html.twig' %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endspaceless %}

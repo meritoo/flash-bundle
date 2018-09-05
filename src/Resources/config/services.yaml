@@ -13,3 +13,16 @@ services:
     Meritoo\FlashBundle\:
         resource: '../../*'
         exclude: '../../{DependencyInjection,Exception,Resources}'
+
+    # Parameters of services
+    #
+    Meritoo\FlashBundle\Twig\ConfigurationRuntime:
+        arguments:
+            $containerCssClasses: '%meritoo_flash.css_classes.container%'
+            $oneFlashMessageCssClasses: '%meritoo_flash.css_classes.one_flash_message%'
+            $positiveFlashMessageType: '%meritoo_flash.flash_message_types.positive%'
+            $negativeFlashMessageType: '%meritoo_flash.flash_message_types.negative%'
+            $neutralFlashMessageType: '%meritoo_flash.flash_message_types.neutral%'
+    Meritoo\FlashBundle\Twig\FlashRuntime:
+        arguments:
+            $manyMessagesTemplatePath: '%meritoo_flash.templates.many%'
