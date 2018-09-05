@@ -2,6 +2,11 @@
 
 Mechanisms, extensions and resources related to Symfony Flash Messages (https://symfony.com/doc/current/controller.html#flash-messages)
 
+# 0.1.1
+
+1. Travis CI > update configuration (You are using the deprecated option "dev". Dev packages are installed by default
+now.)
+
 # 0.1.0
 
 1. Implement Docker
