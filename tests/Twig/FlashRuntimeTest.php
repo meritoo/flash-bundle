@@ -73,6 +73,10 @@ class FlashRuntimeTest extends KernelTestCase
     ): void {
         $this->expectException(UnavailableFlashMessageTypeException::class);
 
+        static::bootKernel([
+            'environment' => 'defaults',
+        ]);
+
         $this
             ->getFlashRuntime($messages)
             ->renderFlashMessagesFromSession();
