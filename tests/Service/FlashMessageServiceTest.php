@@ -577,6 +577,30 @@ class FlashMessageServiceTest extends KernelTestCase
     }
 
     /**
+     * @param array $messages Flash messages stored in session
+     * @param bool  $expected Expected information if there are any flash messages
+     *
+     * @dataProvider provideFlashMessagesToVerifyIfThereAreMessages
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::hasFlashMessages
+     */
+    public function testHasFlashMessages(array $messages, bool $expected): void
+    {
+        $flashBag = static::$container
+            ->get(SessionInterface::class)
+            ->getFlashBag();
+
+        foreach ($messages as $type => $message) {
+            $flashBag->add($type, $message);
+        }
+
+        $has = static::$container
+            ->get(FlashMessageService::class)
+            ->hasFlashMessages();
+
+        static::assertSame($has, $expected);
+    }
+
+    /**
      * Provide flash message type to verify using test environment
      *
      * @return \Generator
@@ -1410,6 +1434,45 @@ class FlashMessageServiceTest extends KernelTestCase
                 ],
                 'test'     => 'test',
             ],
+        ];
+    }
+
+    /**
+     * Provide flash messages to verify if there are any flash messages
+     *
+     * @return \Generator
+     */
+    public function provideFlashMessagesToVerifyIfThereAreMessages(): \Generator
+    {
+        yield[
+            [],
+            false,
+        ];
+
+        yield[
+            [
+                'danger' => 'Oops, not saved',
+            ],
+            true,
+        ];
+
+        yield[
+            [
+                'danger' => 'Oops, not saved',
+                'test'   => 'test',
+            ],
+            true,
+        ];
+
+        yield[
+            [
+                'success' => [
+                    'Saved',
+                    'Check your mailbox',
+                ],
+                'info'    => 'You are registered user now',
+            ],
+            true,
         ];
     }
 

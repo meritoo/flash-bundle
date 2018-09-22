@@ -49,7 +49,7 @@ class FlashRuntimeTest extends KernelTestCase
     /**
      * @param array $messages Flash messages
      *
-     * @dataProvider provideFlashMessagesForSessionUsingTestEnvironmentAndUnavailableFlashMessageType
+     * @dataProvider provideFlashMessagesUsingTestEnvironmentAndUnavailableFlashMessageType
      * @covers       \Meritoo\FlashBundle\Twig\FlashRuntime::renderFlashMessagesFromSession
      */
     public function testRenderFlashMessagesFromSessionUsingTestEnvironmentAndUnavailableFlashMessageType(
@@ -65,7 +65,7 @@ class FlashRuntimeTest extends KernelTestCase
     /**
      * @param array $messages Flash messages
      *
-     * @dataProvider provideFlashMessagesForSessionUsingTestEnvironmentAndUnavailableFlashMessageType
+     * @dataProvider provideFlashMessagesUsingTestEnvironmentAndUnavailableFlashMessageType
      * @covers       \Meritoo\FlashBundle\Twig\FlashRuntime::renderFlashMessagesFromSession
      */
     public function testRenderFlashMessagesFromSessionUsingDefaultsAndUnavailableFlashMessageType(
@@ -86,7 +86,7 @@ class FlashRuntimeTest extends KernelTestCase
      * @param array  $messages Flash messages
      * @param string $expected Expected result of rendering
      *
-     * @dataProvider provideFlashMessagesForSessionUsingTestEnvironment
+     * @dataProvider provideFlashMessagesUsingTestEnvironment
      * @covers       \Meritoo\FlashBundle\Twig\FlashRuntime::renderFlashMessagesFromSession
      */
     public function testRenderFlashMessagesFromSessionUsingTestEnvironment(array $messages, string $expected): void
@@ -102,7 +102,7 @@ class FlashRuntimeTest extends KernelTestCase
      * @param array  $messages Flash messages
      * @param string $expected Expected result of rendering
      *
-     * @dataProvider provideFlashMessagesForSessionUsingDefaults
+     * @dataProvider provideFlashMessagesUsingDefaults
      * @covers       \Meritoo\FlashBundle\Twig\FlashRuntime::renderFlashMessagesFromSession
      */
     public function testRenderFlashMessagesFromSessionUsingDefaults(array $messages, string $expected): void
@@ -114,6 +114,84 @@ class FlashRuntimeTest extends KernelTestCase
         $rendered = $this
             ->getFlashRuntime($messages)
             ->renderFlashMessagesFromSession();
+
+        static::assertSame($expected, $rendered);
+    }
+
+    /**
+     * @param array $messages Flash messages to render. Key-value pairs:
+     *                        - key - type of flash message
+     *                        - value - flash message
+     *
+     * @dataProvider provideFlashMessagesUsingTestEnvironmentAndUnavailableFlashMessageType
+     * @covers       \Meritoo\FlashBundle\Twig\FlashRuntime::renderFlashMessages
+     */
+    public function testRenderFlashMessagesUsingTestEnvironmentAndUnavailableFlashMessageType(array $messages): void
+    {
+        $this->expectException(UnavailableFlashMessageTypeException::class);
+
+        static::$container
+            ->get(FlashRuntime::class)
+            ->renderFlashMessages($messages);
+    }
+
+    /**
+     * @param array $messages Flash messages to render. Key-value pairs:
+     *                        - key - type of flash message
+     *                        - value - flash message
+     *
+     * @dataProvider provideFlashMessagesUsingTestEnvironmentAndUnavailableFlashMessageType
+     * @covers       \Meritoo\FlashBundle\Twig\FlashRuntime::renderFlashMessages
+     */
+    public function testRenderFlashMessagesUsingDefaultsAndUnavailableFlashMessageType(array $messages): void
+    {
+        $this->expectException(UnavailableFlashMessageTypeException::class);
+
+        static::bootKernel([
+            'environment' => 'defaults',
+        ]);
+
+        static::$container
+            ->get(FlashRuntime::class)
+            ->renderFlashMessages($messages);
+    }
+
+    /**
+     * @param array  $messages Flash messages to render. Key-value pairs:
+     *                         - key - type of flash message
+     *                         - value - flash message
+     * @param string $expected Expected result of rendering
+     *
+     * @dataProvider provideFlashMessagesUsingTestEnvironment
+     * @covers       \Meritoo\FlashBundle\Twig\FlashRuntime::renderFlashMessages
+     */
+    public function testRenderFlashMessagesUsingTestEnvironment(array $messages, string $expected): void
+    {
+        $rendered = static::$container
+            ->get(FlashRuntime::class)
+            ->renderFlashMessages($messages);
+
+        static::assertSame($expected, $rendered);
+    }
+
+    /**
+     * @param array  $messages Flash messages to render. Key-value pairs:
+     *                         - key - type of flash message
+     *                         - value - flash message
+     * @param string $expected Expected result of rendering
+     *
+     * @dataProvider provideFlashMessagesUsingDefaults
+     * @covers       \Meritoo\FlashBundle\Twig\FlashRuntime::renderFlashMessages
+     */
+    public function testRenderFlashMessagesUsingDefaults(array $messages, string $expected): void
+    {
+        static::bootKernel([
+            'environment' => 'defaults',
+        ]);
+
+        $rendered = static::$container
+            ->get(FlashRuntime::class)
+            ->renderFlashMessages($messages);
 
         static::assertSame($expected, $rendered);
     }
@@ -147,11 +225,11 @@ class FlashRuntimeTest extends KernelTestCase
     }
 
     /**
-     * Provide flash messages for session using test environment and unavailable flash message type
+     * Provide flash messages using test environment and unavailable flash message type
      *
      * @return \Generator
      */
-    public function provideFlashMessagesForSessionUsingTestEnvironmentAndUnavailableFlashMessageType(): \Generator
+    public function provideFlashMessagesUsingTestEnvironmentAndUnavailableFlashMessageType(): \Generator
     {
         yield[
             [
@@ -178,7 +256,7 @@ class FlashRuntimeTest extends KernelTestCase
      *
      * @return \Generator
      */
-    public function provideFlashMessagesForSessionUsingTestEnvironment(): \Generator
+    public function provideFlashMessagesUsingTestEnvironment(): \Generator
     {
         $containerTemplate = '<div class="all-flash-messages">%s</div>';
         $messageTemplate = '<div class="message %s-message-type single-row" role="alert">%s</div>';
@@ -244,7 +322,7 @@ class FlashRuntimeTest extends KernelTestCase
      *
      * @return \Generator
      */
-    public function provideFlashMessagesForSessionUsingDefaults(): \Generator
+    public function provideFlashMessagesUsingDefaults(): \Generator
     {
         $containerTemplate = '<div class="alerts">%s</div>';
         $messageTemplate = '<div class="alert alert-%s" role="alert">%s</div>';
