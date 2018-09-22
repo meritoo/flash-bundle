@@ -33,6 +33,9 @@ class FlashRuntimeTest extends KernelTestCase
 {
     use BaseTestCaseTrait;
 
+    /**
+     * @covers \Meritoo\FlashBundle\Twig\FlashRuntime::__construct
+     */
     public function testConstructor(): void
     {
         static::assertConstructorVisibilityAndArguments(
@@ -45,7 +48,9 @@ class FlashRuntimeTest extends KernelTestCase
 
     /**
      * @param array $messages Flash messages
+     *
      * @dataProvider provideFlashMessagesForSessionUsingTestEnvironmentAndUnavailableFlashMessageType
+     * @covers       \Meritoo\FlashBundle\Twig\FlashRuntime::renderFlashMessagesFromSession
      */
     public function testRenderFlashMessagesFromSessionUsingTestEnvironmentAndUnavailableFlashMessageType(
         array $messages
@@ -59,7 +64,9 @@ class FlashRuntimeTest extends KernelTestCase
 
     /**
      * @param array $messages Flash messages
+     *
      * @dataProvider provideFlashMessagesForSessionUsingTestEnvironmentAndUnavailableFlashMessageType
+     * @covers       \Meritoo\FlashBundle\Twig\FlashRuntime::renderFlashMessagesFromSession
      */
     public function testRenderFlashMessagesFromSessionUsingDefaultsAndUnavailableFlashMessageType(
         array $messages
@@ -76,6 +83,7 @@ class FlashRuntimeTest extends KernelTestCase
      * @param string $expected Expected result of rendering
      *
      * @dataProvider provideFlashMessagesForSessionUsingTestEnvironment
+     * @covers       \Meritoo\FlashBundle\Twig\FlashRuntime::renderFlashMessagesFromSession
      */
     public function testRenderFlashMessagesFromSessionUsingTestEnvironment(array $messages, string $expected): void
     {
@@ -91,6 +99,7 @@ class FlashRuntimeTest extends KernelTestCase
      * @param string $expected Expected result of rendering
      *
      * @dataProvider provideFlashMessagesForSessionUsingDefaults
+     * @covers       \Meritoo\FlashBundle\Twig\FlashRuntime::renderFlashMessagesFromSession
      */
     public function testRenderFlashMessagesFromSessionUsingDefaults(array $messages, string $expected): void
     {
@@ -110,6 +119,7 @@ class FlashRuntimeTest extends KernelTestCase
      * @param bool  $expected Expected information if there are any flash messages
      *
      * @dataProvider provideFlashMessagesToVerifyExistenceUsingTestEnvironment
+     * @covers       \Meritoo\FlashBundle\Twig\FlashRuntime::hasFlashMessages
      */
     public function testHasFlashMessagesUsingTestEnvironment(array $messages, bool $expected): void
     {
@@ -121,6 +131,7 @@ class FlashRuntimeTest extends KernelTestCase
      * @param bool  $expected Expected information if there are any flash messages
      *
      * @dataProvider provideFlashMessagesToVerifyExistenceUsingDefaults
+     * @covers       \Meritoo\FlashBundle\Twig\FlashRuntime::hasFlashMessages
      */
     public function testHasFlashMessagesUsingDefaults(array $messages, bool $expected): void
     {

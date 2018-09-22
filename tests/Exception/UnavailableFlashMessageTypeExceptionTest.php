@@ -22,6 +22,9 @@ use Meritoo\FlashBundle\Exception\UnavailableFlashMessageTypeException;
  */
 class UnavailableFlashMessageTypeExceptionTest extends BaseTestCase
 {
+    /**
+     * @covers \Meritoo\FlashBundle\Exception\UnavailableFlashMessageTypeException::__construct
+     */
     public function testConstructorVisibilityAndArguments(): void
     {
         static::assertConstructorVisibilityAndArguments(
@@ -38,6 +41,7 @@ class UnavailableFlashMessageTypeExceptionTest extends BaseTestCase
      * @param string $expectedMessage            Expected message of exception
      *
      * @dataProvider provideUnavailableFlashMessageTypeAndExpectedMessage
+     * @covers       \Meritoo\FlashBundle\Exception\UnavailableFlashMessageTypeException::create
      */
     public function testCreate(
         string $flashMessageType,

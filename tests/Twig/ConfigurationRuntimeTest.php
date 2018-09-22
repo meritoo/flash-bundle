@@ -26,6 +26,9 @@ class ConfigurationRuntimeTest extends KernelTestCase
 {
     use BaseTestCaseTrait;
 
+    /**
+     * @covers \Meritoo\FlashBundle\Twig\ConfigurationRuntime::__construct
+     */
     public function testConstructor(): void
     {
         static::assertConstructorVisibilityAndArguments(
@@ -36,6 +39,9 @@ class ConfigurationRuntimeTest extends KernelTestCase
         );
     }
 
+    /**
+     * @covers \Meritoo\FlashBundle\Twig\ConfigurationRuntime::getContainerCssClasses
+     */
     public function testGetContainerCssClassesUsingTestEnvironment(): void
     {
         $containerCssClasses = static::$container
@@ -45,6 +51,9 @@ class ConfigurationRuntimeTest extends KernelTestCase
         static::assertSame('all-flash-messages', $containerCssClasses);
     }
 
+    /**
+     * @covers \Meritoo\FlashBundle\Twig\ConfigurationRuntime::getContainerCssClasses
+     */
     public function testGetContainerCssClassesUsingDefaults(): void
     {
         static::bootKernel([
@@ -60,7 +69,9 @@ class ConfigurationRuntimeTest extends KernelTestCase
 
     /**
      * @param string $unavailableFlashMessageType Unavailable type of flash message
+     *
      * @dataProvider provideUnavailableFlashMessageType
+     * @covers       \Meritoo\FlashBundle\Twig\ConfigurationRuntime::getOneFlashMessageCssClasses
      */
     public function testGetOneFlashMessageCssClassesUsingTestEnvironmentAndUnavailableFlashMessageType(
         string $unavailableFlashMessageType
@@ -74,7 +85,9 @@ class ConfigurationRuntimeTest extends KernelTestCase
 
     /**
      * @param string $unavailableFlashMessageType Unavailable type of flash message
+     *
      * @dataProvider provideUnavailableFlashMessageType
+     * @covers       \Meritoo\FlashBundle\Twig\ConfigurationRuntime::getOneFlashMessageCssClasses
      */
     public function testGetOneFlashMessageCssClassesUsingDefaultsAndUnavailableFlashMessageType(
         string $unavailableFlashMessageType
@@ -95,6 +108,7 @@ class ConfigurationRuntimeTest extends KernelTestCase
      * @param string $expected         Expected CSS classes for one flash message
      *
      * @dataProvider provideFlashMessageTypeUsingTestEnvironment
+     * @covers       \Meritoo\FlashBundle\Twig\ConfigurationRuntime::getOneFlashMessageCssClasses
      */
     public function testGetOneFlashMessageCssClassesUsingTestEnvironment(
         string $flashMessageType,
@@ -112,6 +126,7 @@ class ConfigurationRuntimeTest extends KernelTestCase
      * @param string $expected         Expected CSS classes for one flash message
      *
      * @dataProvider provideFlashMessageTypeUsingDefaults
+     * @covers       \Meritoo\FlashBundle\Twig\ConfigurationRuntime::getOneFlashMessageCssClasses
      */
     public function testGetOneFlashMessageCssClassesUsingDefaults(string $flashMessageType, string $expected): void
     {
@@ -131,6 +146,7 @@ class ConfigurationRuntimeTest extends KernelTestCase
      * @param string $expected         Expected CSS classes for one flash message
      *
      * @dataProvider provideFlashMessageTypeUsingCssWithoutPlaceholder
+     * @covers       \Meritoo\FlashBundle\Twig\ConfigurationRuntime::getOneFlashMessageCssClasses
      */
     public function testGetOneFlashMessageCssClassesWithoutPlaceholder(string $flashMessageType, string $expected): void
     {

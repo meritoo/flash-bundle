@@ -22,6 +22,9 @@ use Twig\Error\RuntimeError;
  */
 class FlashExtensionTest extends BaseTwigExtensionTestCase
 {
+    /**
+     * @covers \Meritoo\FlashBundle\Twig\FlashExtension::getFunctions
+     */
     public function testGetFunctions(): void
     {
         $functions = static::$container

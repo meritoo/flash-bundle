@@ -27,6 +27,9 @@ class FlashMessageServiceTest extends KernelTestCase
 {
     use BaseTestCaseTrait;
 
+    /**
+     * @covers \Meritoo\FlashBundle\Service\FlashMessageService::__construct
+     */
     public function testConstructor(): void
     {
         static::assertConstructorVisibilityAndArguments(
@@ -37,6 +40,9 @@ class FlashMessageServiceTest extends KernelTestCase
         );
     }
 
+    /**
+     * @covers \Meritoo\FlashBundle\Service\FlashMessageService::prepareMessages
+     */
     public function testPrepareMessagesWithoutFlashMessageTypes(): void
     {
         $messages = [];
@@ -50,7 +56,9 @@ class FlashMessageServiceTest extends KernelTestCase
 
     /**
      * @param array $messages Flash messages to verify
+     *
      * @dataProvider provideMessagesToPrepareUsingUnavailableFlashMessageType
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::prepareMessages
      */
     public function testPrepareMessagesUsingTestEnvironmentAndUnavailableFlashMessageType(array $messages): void
     {
@@ -63,7 +71,9 @@ class FlashMessageServiceTest extends KernelTestCase
 
     /**
      * @param array $messages Flash messages to verify
+     *
      * @dataProvider provideMessagesToPrepareUsingUnavailableFlashMessageType
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::prepareMessages
      */
     public function testPrepareMessagesUsingDefaultsAndUnavailableFlashMessageType(array $messages): void
     {
@@ -83,6 +93,7 @@ class FlashMessageServiceTest extends KernelTestCase
      * @param array $expectedMessages Expected flash messages after verification
      *
      * @dataProvider provideMessagesToPrepareUsingTestEnvironment
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::prepareMessages
      */
     public function testPrepareMessagesUsingTestEnvironment(array $messages, array $expectedMessages): void
     {
@@ -98,6 +109,7 @@ class FlashMessageServiceTest extends KernelTestCase
      * @param array $expectedMessages Expected flash messages after verification
      *
      * @dataProvider provideMessagesToPrepareUsingDefaults
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::prepareMessages
      */
     public function testPrepareMessagesUsingDefaults(array $messages, array $expectedMessages): void
     {
@@ -114,7 +126,9 @@ class FlashMessageServiceTest extends KernelTestCase
 
     /**
      * @param string $flashMessageType Type of flash message to verify, e.g. "warning"
+     *
      * @dataProvider provideUnavailableFlashMessageTypeToVerify
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::verifyFlashMessageType
      */
     public function testVerifyFlashMessageTypeUsingTestEnvironmentAndUnavailableFlashMessageType(
         string $flashMessageType
@@ -128,7 +142,9 @@ class FlashMessageServiceTest extends KernelTestCase
 
     /**
      * @param string $flashMessageType Type of flash message to verify, e.g. "warning"
+     *
      * @dataProvider provideUnavailableFlashMessageTypeToVerify
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::verifyFlashMessageType
      */
     public function testVerifyFlashMessageTypeUsingDefaultsAndUnavailableFlashMessageType(
         string $flashMessageType
@@ -146,7 +162,9 @@ class FlashMessageServiceTest extends KernelTestCase
 
     /**
      * @param string $flashMessageType Type of flash message to verify, e.g. "warning"
+     *
      * @dataProvider provideFlashMessageTypeToVerifyUsingTestEnvironment
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::verifyFlashMessageType
      */
     public function testVerifyFlashMessageTypeUsingTestEnvironment(string $flashMessageType): void
     {
@@ -159,7 +177,9 @@ class FlashMessageServiceTest extends KernelTestCase
 
     /**
      * @param string $flashMessageType Type of flash message to verify, e.g. "warning"
+     *
      * @dataProvider provideFlashMessageTypeToVerifyUsingDefaults
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::verifyFlashMessageType
      */
     public function testVerifyFlashMessageTypeUsingDefaults(string $flashMessageType): void
     {
@@ -174,6 +194,9 @@ class FlashMessageServiceTest extends KernelTestCase
         static::assertInstanceOf(FlashMessageService::class, $result);
     }
 
+    /**
+     * @covers \Meritoo\FlashBundle\Service\FlashMessageService::verifyFlashMessageTypes
+     */
     public function testVerifyFlashMessageTypesWithoutFlashMessageTypes(): void
     {
         $result = static::$container
@@ -185,7 +208,9 @@ class FlashMessageServiceTest extends KernelTestCase
 
     /**
      * @param array $flashMessageTypes Types of flash message to verify, e.g. ["warning", "success"]
+     *
      * @dataProvider provideUnavailableFlashMessageTypesToVerify
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::verifyFlashMessageTypes
      */
     public function testVerifyFlashMessageTypesUsingTestEnvironmentAndUnavailableFlashMessageType(
         array $flashMessageTypes
@@ -199,7 +224,9 @@ class FlashMessageServiceTest extends KernelTestCase
 
     /**
      * @param array $flashMessageTypes Types of flash message to verify, e.g. ["warning", "success"]
+     *
      * @dataProvider provideUnavailableFlashMessageTypesToVerify
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::verifyFlashMessageTypes
      */
     public function testVerifyFlashMessageTypesUsingDefaultsAndUnavailableFlashMessageType(
         array $flashMessageTypes
@@ -217,7 +244,9 @@ class FlashMessageServiceTest extends KernelTestCase
 
     /**
      * @param array $flashMessageTypes Types of flash message to verify, e.g. ["warning", "success"]
+     *
      * @dataProvider provideFlashMessageTypesToVerifyUsingTestEnvironment
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::verifyFlashMessageTypes
      */
     public function testVerifyFlashMessageTypesUsingTestEnvironment(array $flashMessageTypes): void
     {
@@ -230,7 +259,9 @@ class FlashMessageServiceTest extends KernelTestCase
 
     /**
      * @param array $flashMessageTypes Types of flash message to verify, e.g. ["warning", "success"]
+     *
      * @dataProvider provideFlashMessageTypesToVerifyUsingDefaults
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::verifyFlashMessageTypes
      */
     public function testVerifyFlashMessageTypesUsingDefaults(array $flashMessageTypes): void
     {
@@ -245,6 +276,9 @@ class FlashMessageServiceTest extends KernelTestCase
         static::assertInstanceOf(FlashMessageService::class, $result);
     }
 
+    /**
+     * @covers \Meritoo\FlashBundle\Service\FlashMessageService::addFlashMessages
+     */
     public function testAddFlashMessagesWithoutFlashMessages(): void
     {
         $result = static::$container
@@ -262,7 +296,9 @@ class FlashMessageServiceTest extends KernelTestCase
 
     /**
      * @param array $messages Flash messages to add
+     *
      * @dataProvider provideFlashMessagesToAddUsingUnavailableFlashMessageType
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::addFlashMessages
      */
     public function testAddFlashMessagesUsingUnavailableFlashMessageTypeAndTestEnvironment(
         array $messages
@@ -276,7 +312,9 @@ class FlashMessageServiceTest extends KernelTestCase
 
     /**
      * @param array $messages Flash messages to add
+     *
      * @dataProvider provideFlashMessagesToAddUsingUnavailableFlashMessageType
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::addFlashMessages
      */
     public function testAddFlashMessagesUsingUnavailableFlashMessageTypeAndDefaults(
         array $messages
@@ -297,6 +335,7 @@ class FlashMessageServiceTest extends KernelTestCase
      * @param array $expectedMessages Expected flash messages
      *
      * @dataProvider provideFlashMessagesToAddUsingTestEnvironment
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::addFlashMessages
      */
     public function testAddFlashMessagesUsingTestEnvironment(array $messages, array $expectedMessages): void
     {
@@ -318,6 +357,7 @@ class FlashMessageServiceTest extends KernelTestCase
      * @param array $expectedMessages Expected flash messages
      *
      * @dataProvider provideFlashMessagesToAddUsingDefaults
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::addFlashMessages
      */
     public function testAddFlashMessagesUsingDefaults(array $messages, array $expectedMessages): void
     {
@@ -338,6 +378,9 @@ class FlashMessageServiceTest extends KernelTestCase
         static::assertSame($expectedMessages, $allFlashMessages);
     }
 
+    /**
+     * @covers \Meritoo\FlashBundle\Service\FlashMessageService::addPositiveFlashMessages
+     */
     public function testAddPositiveFlashMessagesWithoutFlashMessages(): void
     {
         $result = static::$container
@@ -358,6 +401,7 @@ class FlashMessageServiceTest extends KernelTestCase
      * @param array $expectedMessages Expected flash messages
      *
      * @dataProvider providePositiveFlashMessagesToAddUsingTestEnvironment
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::addPositiveFlashMessages
      */
     public function testAddPositiveFlashMessagesUsingTestEnvironment(array $messages, array $expectedMessages): void
     {
@@ -379,6 +423,7 @@ class FlashMessageServiceTest extends KernelTestCase
      * @param array $expectedMessages Expected flash messages
      *
      * @dataProvider providePositiveFlashMessagesToAddUsingDefaults
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::addPositiveFlashMessages
      */
     public function testAddPositiveFlashMessagesUsingDefaults(array $messages, array $expectedMessages): void
     {
@@ -399,6 +444,9 @@ class FlashMessageServiceTest extends KernelTestCase
         static::assertSame($expectedMessages, $allFlashMessages);
     }
 
+    /**
+     * @covers \Meritoo\FlashBundle\Service\FlashMessageService::addNegativeFlashMessages
+     */
     public function testAddNegativeFlashMessagesWithoutFlashMessages(): void
     {
         $result = static::$container
@@ -419,6 +467,7 @@ class FlashMessageServiceTest extends KernelTestCase
      * @param array $expectedMessages Expected flash messages
      *
      * @dataProvider provideNegativeFlashMessagesToAddUsingTestEnvironment
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::addNegativeFlashMessages
      */
     public function testAddNegativeFlashMessagesUsingTestEnvironment(array $messages, array $expectedMessages): void
     {
@@ -440,6 +489,7 @@ class FlashMessageServiceTest extends KernelTestCase
      * @param array $expectedMessages Expected flash messages
      *
      * @dataProvider provideNegativeFlashMessagesToAddUsingDefaults
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::addNegativeFlashMessages
      */
     public function testAddNegativeFlashMessagesUsingDefaults(array $messages, array $expectedMessages): void
     {
@@ -460,6 +510,9 @@ class FlashMessageServiceTest extends KernelTestCase
         static::assertSame($expectedMessages, $allFlashMessages);
     }
 
+    /**
+     * @covers \Meritoo\FlashBundle\Service\FlashMessageService::addNeutralFlashMessages
+     */
     public function testAddNeutralFlashMessagesWithoutFlashMessages(): void
     {
         $result = static::$container
@@ -480,6 +533,7 @@ class FlashMessageServiceTest extends KernelTestCase
      * @param array $expectedMessages Expected flash messages
      *
      * @dataProvider provideNeutralFlashMessagesToAddUsingTestEnvironment
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::addNeutralFlashMessages
      */
     public function testAddNeutralFlashMessagesUsingTestEnvironment(array $messages, array $expectedMessages): void
     {
@@ -501,6 +555,7 @@ class FlashMessageServiceTest extends KernelTestCase
      * @param array $expectedMessages Expected flash messages
      *
      * @dataProvider provideNeutralFlashMessagesToAddUsingDefaults
+     * @covers       \Meritoo\FlashBundle\Service\FlashMessageService::addNeutralFlashMessages
      */
     public function testAddNeutralFlashMessagesUsingDefaults(array $messages, array $expectedMessages): void
     {

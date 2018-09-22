@@ -21,6 +21,9 @@ use Meritoo\FlashBundle\Twig\ConfigurationExtension;
  */
 class ConfigurationExtensionTest extends BaseTwigExtensionTestCase
 {
+    /**
+     * @covers \Meritoo\FlashBundle\Twig\ConfigurationExtension::getFunctions
+     */
     public function testGetFunctions(): void
     {
         $functions = static::$container
