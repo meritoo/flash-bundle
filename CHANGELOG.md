@@ -5,6 +5,8 @@ Mechanisms, extensions and resources related to Symfony Flash Messages (https://
 # 0.1.2
 
 1. Phing > tests > missing path of directory with code coverage report
+2. Tests > add missing tests
+3. Docker > Dockerfile > remove not working the Handy Apt Terminal Progress Bar
 
 # 0.1.1
 
