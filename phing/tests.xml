@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Meritoo Application" basedir="." default="build:main" phingVersion="2.16.0">
+<project name="Meritoo Bundle" basedir="." default="build:main" phingVersion="2.16.0">
     <autoloader/>
 
     <!-- Properties -->
@@ -40,10 +40,7 @@
         Rules for formatting are defined in /.php_cs.dist file.
         -->
 
-        <exec
-                passthru="true"
-                command="${tests.cs_fixer.path} fix --verbose"
-        />
+        <exec command="${tests.cs_fixer.command}" passthru="true"/>
     </target>
 
     <!-- Check target -->
@@ -53,7 +50,7 @@
 
     <!-- Test target -->
     <target name="build:test"
-            depends="tests:run"
+            depends="test:phpunit"
             description="Executes all tests"/>
 
     <!-- Project build clean -->
@@ -119,10 +116,10 @@
         </phploc>
     </target>
 
-    <!-- Run tests -->
-    <target name="tests:run" description="Run all tests">
-        <echo msg="Running all tests..."/>
-        <exec command="${tests.framework.path}" passthru="true"/>
+    <!-- PHPUnit tests -->
+    <target name="test:phpunit" description="Runs PHPUnit tests">
+        <echo msg="Running PHPUnit tests..."/>
+        <exec command="${tests.phpunit.command}" passthru="true"/>
     </target>
 
     <!-- Checkout and finalization -->
