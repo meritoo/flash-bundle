@@ -9,6 +9,7 @@ Mechanisms, extensions and resources related to Symfony Flash Messages (https://
 3. Docker > Dockerfile > remove not working the Handy Apt Terminal Progress Bar
 4. Docker > Dockerfile > fix installation of Composer
 5. Phing > update configuration files
+6. Implement Mutation Testing Framework (infection/infection package)
 
 # 0.1.1
 

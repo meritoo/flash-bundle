@@ -50,7 +50,7 @@
 
     <!-- Test target -->
     <target name="build:test"
-            depends="test:phpunit"
+            depends="test:phpunit, test:infection"
             description="Executes all tests"/>
 
     <!-- Project build clean -->
@@ -120,6 +120,12 @@
     <target name="test:phpunit" description="Runs PHPUnit tests">
         <echo msg="Running PHPUnit tests..."/>
         <exec command="${tests.phpunit.command}" passthru="true"/>
+    </target>
+
+    <!-- Run mutation testing -->
+    <target name="test:infection" description="Runs mutation testing">
+        <echo msg="Running mutation testing..."/>
+        <exec command="${tests.mutation.command}" passthru="true"/>
     </target>
 
     <!-- Checkout and finalization -->
