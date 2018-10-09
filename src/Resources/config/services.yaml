@@ -32,3 +32,4 @@ services:
     Meritoo\FlashBundle\Twig\FlashRuntime:
         arguments:
             $manyMessagesTemplatePath: '%meritoo_flash.templates.many%'
+            $singleMessagesTemplatePath: '%meritoo_flash.templates.single%'

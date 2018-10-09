@@ -12,10 +12,7 @@ namespace Meritoo\Test\FlashBundle\Twig;
 
 use Meritoo\Common\Traits\Test\Base\BaseTestCaseTrait;
 use Meritoo\Common\Type\OopVisibilityType;
-use Meritoo\Common\Utilities\Bundle;
-use Meritoo\Common\Utilities\Reflection;
 use Meritoo\FlashBundle\Exception\UnavailableFlashMessageTypeException;
-use Meritoo\FlashBundle\MeritooFlashBundle;
 use Meritoo\FlashBundle\Service\FlashMessageService;
 use Meritoo\FlashBundle\Twig\FlashRuntime;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -41,8 +38,8 @@ class FlashRuntimeTest extends KernelTestCase
         static::assertConstructorVisibilityAndArguments(
             FlashRuntime::class,
             OopVisibilityType::IS_PUBLIC,
-            5,
-            5
+            6,
+            6
         );
     }
 
@@ -259,7 +256,7 @@ class FlashRuntimeTest extends KernelTestCase
     public function provideFlashMessagesUsingTestEnvironment(): \Generator
     {
         $containerTemplate = '<div class="all-flash-messages">%s</div>';
-        $messageTemplate = '<div class="message %s-message-type single-row" role="alert">%s</div>';
+        $messageTemplate = '<p class="message %s-message-type single-row" role="alert">%s</p>';
 
         yield[
             [
@@ -492,15 +489,16 @@ class FlashRuntimeTest extends KernelTestCase
         /* @var EngineInterface $twigEngine */
         $twigEngine = static::$container->get('templating');
 
-        $bundleName = Reflection::getClassName(MeritooFlashBundle::class, true);
-        $manyMessagesTemplatePath = Bundle::getBundleViewPath('many', $bundleName);
+        $manyMessagesTemplatePath = static::$container->getParameter('meritoo_flash.templates.many');
+        $singleMessagesTemplatePath = static::$container->getParameter('meritoo_flash.templates.single');
 
         return new FlashRuntime(
             $flashMessageService,
             $requestStack,
             $session,
             $twigEngine,
-            $manyMessagesTemplatePath
+            $manyMessagesTemplatePath,
+            $singleMessagesTemplatePath
         );
     }
 }

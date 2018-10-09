@@ -1,6 +1,7 @@
 # Meritoo Flash Bundle
 
-Mechanisms, extensions and resources related to Symfony Flash Messages (https://symfony.com/doc/current/controller.html#flash-messages)
+Mechanisms, extensions and resources related to Symfony Flash Messages
+(https://symfony.com/doc/current/controller.html#flash-messages)
 
 # 0.1.2
 
@@ -10,6 +11,8 @@ Mechanisms, extensions and resources related to Symfony Flash Messages (https://
 4. Docker > Dockerfile > fix installation of Composer
 5. Phing > update configuration files
 6. Implement Mutation Testing Framework (infection/infection package)
+7. Twig extension > render many flash messages > use path of template for single/one flash message defined in 
+configuration
 
 # 0.1.1
 

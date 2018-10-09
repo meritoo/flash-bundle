@@ -3,7 +3,7 @@
         <div class="{{ meritoo_flash_container_css_classes() }}">
             {% for type, messagesOfType in messages %}
                 {% for message in messagesOfType %}
-                    {% include '@MeritooFlash/single.html.twig' %}
+                    {% include single_message_template %}
                 {% endfor %}
             {% endfor %}
         </div>

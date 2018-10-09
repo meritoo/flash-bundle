@@ -62,26 +62,36 @@ class FlashRuntime implements RuntimeExtensionInterface
     private $manyMessagesTemplatePath;
 
     /**
+     * Path of template for single/one flash message only
+     *
+     * @var string
+     */
+    private $singleMessagesTemplatePath;
+
+    /**
      * Class constructor
      *
-     * @param FlashMessageService $flashMessageService      Service related to flash messages
-     * @param RequestStack        $requestStack             Request stack that controls the lifecycle of requests
-     * @param SessionInterface    $session                  The session
-     * @param EngineInterface     $templatingEngine         Engine that render templates
-     * @param string              $manyMessagesTemplatePath Path of template for many flash messages (with container)
+     * @param FlashMessageService $flashMessageService        Service related to flash messages
+     * @param RequestStack        $requestStack               Request stack that controls the lifecycle of requests
+     * @param SessionInterface    $session                    The session
+     * @param EngineInterface     $templatingEngine           Engine that render templates
+     * @param string              $manyMessagesTemplatePath   Path of template for many flash messages (with container)
+     * @param string              $singleMessagesTemplatePath Path of template for single/one flash message only
      */
     public function __construct(
         FlashMessageService $flashMessageService,
         RequestStack $requestStack,
         SessionInterface $session,
         EngineInterface $templatingEngine,
-        string $manyMessagesTemplatePath
+        string $manyMessagesTemplatePath,
+        string $singleMessagesTemplatePath
     ) {
         $this->flashMessageService = $flashMessageService;
         $this->requestStack = $requestStack;
         $this->session = $session;
         $this->templatingEngine = $templatingEngine;
         $this->manyMessagesTemplatePath = $manyMessagesTemplatePath;
+        $this->singleMessagesTemplatePath = $singleMessagesTemplatePath;
     }
 
     /**
@@ -107,7 +117,8 @@ class FlashRuntime implements RuntimeExtensionInterface
             ->prepareMessages($messages);
 
         $parameters = [
-            'messages' => $messages,
+            'messages'                => $messages,
+            'single_message_template' => $this->singleMessagesTemplatePath,
         ];
 
         return $this

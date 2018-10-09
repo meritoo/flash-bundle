@@ -10,3 +10,5 @@ meritoo_flash:
         positive: positive
         negative: negative
         neutral: information
+    templates:
+        single: 'testing_single.html.twig'

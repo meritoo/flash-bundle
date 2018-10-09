@@ -190,7 +190,7 @@ class FlashExtensionTest extends BaseTwigExtensionTestCase
     public function provideTemplateToRenderMessagesUsingTestEnvironment(): \Generator
     {
         $containerTemplate = '<div class="all-flash-messages">%s</div>';
-        $messageTemplate = '<div class="message %s-message-type single-row" role="alert">%s</div>';
+        $messageTemplate = '<p class="message %s-message-type single-row" role="alert">%s</p>';
 
         yield[
             '{{ meritoo_flash_message_render_messages({
