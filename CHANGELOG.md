@@ -6,6 +6,7 @@ Mechanisms, extensions and resources related to Symfony Flash Messages
 # 0.1.3
 
 1. Phing > update configuration
+2. Docker > docker-compose.yml > add "phpunit" service > used to run PHPUnit's tests
 
 # 0.1.2
 
