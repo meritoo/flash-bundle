@@ -3,6 +3,10 @@
 Mechanisms, extensions and resources related to Symfony Flash Messages
 (https://symfony.com/doc/current/controller.html#flash-messages)
 
+# 0.1.3
+
+1. Phing > update configuration
+
 # 0.1.2
 
 1. Phing > tests > missing path of directory with code coverage report
