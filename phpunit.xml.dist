@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- https://phpunit.de/manual/current/en/appendixes.configuration.html -->
+<!-- https://phpunit.readthedocs.io/en/latest/configuration.html -->
 <phpunit
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/6.1/phpunit.xsd"
-        backupGlobals="false"
-        colors="true"
+        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/7.3/phpunit.xsd"
         bootstrap="vendor/autoload.php"
+        colors="true"
         verbose="true"
 >
     <php>
@@ -19,14 +18,14 @@
     </php>
 
     <testsuites>
-        <testsuite name="Project Test Suite">
+        <testsuite name="Meritoo Package - Main Test Suite">
             <directory>tests/</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
-            <directory>./src/</directory>
+            <directory>src/</directory>
         </whitelist>
     </filter>
 
@@ -35,6 +34,6 @@
     <!--</listeners>-->
 
     <logging>
-        <log type="coverage-html" target="./build/reports/phpunit_coverage/html"/>
+        <log type="coverage-html" target="build/reports/phpunit_coverage/html"/>
     </logging>
 </phpunit>
