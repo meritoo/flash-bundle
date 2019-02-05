@@ -31,10 +31,10 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('meritoo_flash');
+        $treeBuilder = new TreeBuilder('meritoo_flash');
 
-        $rootNode
+        $treeBuilder
+            ->getRootNode()
             ->children()
                 ->append($this->getTemplatesNode())
                 ->append($this->getCssClassesNode())
@@ -52,8 +52,8 @@ class Configuration implements ConfigurationInterface
      */
     private function getTemplatesNode(): NodeDefinition
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('templates');
+        $treeBuilder = new TreeBuilder('templates');
+        $rootNode = $treeBuilder->getRootNode();
         $bundleName = Reflection::getClassName(MeritooFlashBundle::class, true);
 
         $rootNode
@@ -86,8 +86,8 @@ class Configuration implements ConfigurationInterface
      */
     private function getCssClassesNode(): NodeDefinition
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('css_classes');
+        $treeBuilder = new TreeBuilder('css_classes');
+        $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
             ->addDefaultsIfNotSet()
@@ -113,8 +113,8 @@ class Configuration implements ConfigurationInterface
      */
     private function getFlashMessageTypesNode(): NodeDefinition
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('flash_message_types');
+        $treeBuilder = new TreeBuilder('flash_message_types');
+        $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
             ->addDefaultsIfNotSet()
