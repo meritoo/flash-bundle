@@ -21,10 +21,22 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
  *
  * @author    Meritoo <github@meritoo.pl>
  * @copyright Meritoo
+ *
+ * @internal
+ * @coversNothing
  */
 class ConfigurationRuntimeTest extends KernelTestCase
 {
     use BaseTestCaseTrait;
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        static::bootKernel();
+    }
 
     /**
      * @covers \Meritoo\FlashBundle\Twig\ConfigurationRuntime::__construct
@@ -46,7 +58,8 @@ class ConfigurationRuntimeTest extends KernelTestCase
     {
         $containerCssClasses = static::$container
             ->get(ConfigurationRuntime::class)
-            ->getContainerCssClasses();
+            ->getContainerCssClasses()
+        ;
 
         static::assertSame('all-flash-messages', $containerCssClasses);
     }
@@ -62,7 +75,8 @@ class ConfigurationRuntimeTest extends KernelTestCase
 
         $containerCssClasses = static::$container
             ->get(ConfigurationRuntime::class)
-            ->getContainerCssClasses();
+            ->getContainerCssClasses()
+        ;
 
         static::assertSame('alerts', $containerCssClasses);
     }
@@ -80,7 +94,8 @@ class ConfigurationRuntimeTest extends KernelTestCase
 
         static::$container
             ->get(ConfigurationRuntime::class)
-            ->getOneFlashMessageCssClasses($unavailableFlashMessageType);
+            ->getOneFlashMessageCssClasses($unavailableFlashMessageType)
+        ;
     }
 
     /**
@@ -100,7 +115,8 @@ class ConfigurationRuntimeTest extends KernelTestCase
 
         static::$container
             ->get(ConfigurationRuntime::class)
-            ->getOneFlashMessageCssClasses($unavailableFlashMessageType);
+            ->getOneFlashMessageCssClasses($unavailableFlashMessageType)
+        ;
     }
 
     /**
@@ -116,7 +132,8 @@ class ConfigurationRuntimeTest extends KernelTestCase
     ): void {
         $cssClasses = static::$container
             ->get(ConfigurationRuntime::class)
-            ->getOneFlashMessageCssClasses($flashMessageType);
+            ->getOneFlashMessageCssClasses($flashMessageType)
+        ;
 
         static::assertSame($expected, $cssClasses);
     }
@@ -136,7 +153,8 @@ class ConfigurationRuntimeTest extends KernelTestCase
 
         $cssClasses = static::$container
             ->get(ConfigurationRuntime::class)
-            ->getOneFlashMessageCssClasses($flashMessageType);
+            ->getOneFlashMessageCssClasses($flashMessageType)
+        ;
 
         static::assertSame($expected, $cssClasses);
     }
@@ -156,7 +174,8 @@ class ConfigurationRuntimeTest extends KernelTestCase
 
         $cssClasses = static::$container
             ->get(ConfigurationRuntime::class)
-            ->getOneFlashMessageCssClasses($flashMessageType);
+            ->getOneFlashMessageCssClasses($flashMessageType)
+        ;
 
         static::assertSame($expected, $cssClasses);
     }
@@ -277,14 +296,5 @@ class ConfigurationRuntimeTest extends KernelTestCase
             'info',
             'message message-type single-row',
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function setUp()
-    {
-        parent::setUp();
-        static::bootKernel();
     }
 }

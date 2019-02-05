@@ -22,10 +22,22 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
  *
  * @author    Meritoo <github@meritoo.pl>
  * @copyright Meritoo
+ *
+ * @internal
+ * @coversNothing
  */
 class FlashMessageServiceTest extends KernelTestCase
 {
     use BaseTestCaseTrait;
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        static::bootKernel();
+    }
 
     /**
      * @covers \Meritoo\FlashBundle\Service\FlashMessageService::__construct
@@ -49,7 +61,8 @@ class FlashMessageServiceTest extends KernelTestCase
 
         static::$container
             ->get(FlashMessageService::class)
-            ->prepareMessages($messages);
+            ->prepareMessages($messages)
+        ;
 
         static::assertSame([], $messages);
     }
@@ -66,7 +79,8 @@ class FlashMessageServiceTest extends KernelTestCase
 
         static::$container
             ->get(FlashMessageService::class)
-            ->prepareMessages($messages);
+            ->prepareMessages($messages)
+        ;
     }
 
     /**
@@ -85,7 +99,8 @@ class FlashMessageServiceTest extends KernelTestCase
 
         static::$container
             ->get(FlashMessageService::class)
-            ->prepareMessages($messages);
+            ->prepareMessages($messages)
+        ;
     }
 
     /**
@@ -99,7 +114,8 @@ class FlashMessageServiceTest extends KernelTestCase
     {
         static::$container
             ->get(FlashMessageService::class)
-            ->prepareMessages($messages);
+            ->prepareMessages($messages)
+    ;
 
         static::assertSame($expectedMessages, $messages);
     }
@@ -119,7 +135,8 @@ class FlashMessageServiceTest extends KernelTestCase
 
         static::$container
             ->get(FlashMessageService::class)
-            ->prepareMessages($messages);
+            ->prepareMessages($messages)
+    ;
 
         static::assertSame($expectedMessages, $messages);
     }
@@ -137,7 +154,8 @@ class FlashMessageServiceTest extends KernelTestCase
 
         static::$container
             ->get(FlashMessageService::class)
-            ->verifyFlashMessageType($flashMessageType);
+            ->verifyFlashMessageType($flashMessageType)
+        ;
     }
 
     /**
@@ -157,7 +175,8 @@ class FlashMessageServiceTest extends KernelTestCase
 
         static::$container
             ->get(FlashMessageService::class)
-            ->verifyFlashMessageType($flashMessageType);
+            ->verifyFlashMessageType($flashMessageType)
+        ;
     }
 
     /**
@@ -170,7 +189,8 @@ class FlashMessageServiceTest extends KernelTestCase
     {
         $result = static::$container
             ->get(FlashMessageService::class)
-            ->verifyFlashMessageType($flashMessageType);
+            ->verifyFlashMessageType($flashMessageType)
+        ;
 
         static::assertInstanceOf(FlashMessageService::class, $result);
     }
@@ -189,7 +209,8 @@ class FlashMessageServiceTest extends KernelTestCase
 
         $result = static::$container
             ->get(FlashMessageService::class)
-            ->verifyFlashMessageType($flashMessageType);
+            ->verifyFlashMessageType($flashMessageType)
+        ;
 
         static::assertInstanceOf(FlashMessageService::class, $result);
     }
@@ -201,7 +222,8 @@ class FlashMessageServiceTest extends KernelTestCase
     {
         $result = static::$container
             ->get(FlashMessageService::class)
-            ->verifyFlashMessageTypes([]);
+            ->verifyFlashMessageTypes([])
+        ;
 
         static::assertInstanceOf(FlashMessageService::class, $result);
     }
@@ -219,7 +241,8 @@ class FlashMessageServiceTest extends KernelTestCase
 
         static::$container
             ->get(FlashMessageService::class)
-            ->verifyFlashMessageTypes($flashMessageTypes);
+            ->verifyFlashMessageTypes($flashMessageTypes)
+        ;
     }
 
     /**
@@ -239,7 +262,8 @@ class FlashMessageServiceTest extends KernelTestCase
 
         static::$container
             ->get(FlashMessageService::class)
-            ->verifyFlashMessageTypes($flashMessageTypes);
+            ->verifyFlashMessageTypes($flashMessageTypes)
+        ;
     }
 
     /**
@@ -252,7 +276,8 @@ class FlashMessageServiceTest extends KernelTestCase
     {
         $result = static::$container
             ->get(FlashMessageService::class)
-            ->verifyFlashMessageTypes($flashMessageTypes);
+            ->verifyFlashMessageTypes($flashMessageTypes)
+        ;
 
         static::assertInstanceOf(FlashMessageService::class, $result);
     }
@@ -271,7 +296,8 @@ class FlashMessageServiceTest extends KernelTestCase
 
         $result = static::$container
             ->get(FlashMessageService::class)
-            ->verifyFlashMessageTypes($flashMessageTypes);
+            ->verifyFlashMessageTypes($flashMessageTypes)
+        ;
 
         static::assertInstanceOf(FlashMessageService::class, $result);
     }
@@ -283,12 +309,14 @@ class FlashMessageServiceTest extends KernelTestCase
     {
         $result = static::$container
             ->get(FlashMessageService::class)
-            ->addFlashMessages([]);
+            ->addFlashMessages([])
+        ;
 
         $allFlashMessages = static::$container
             ->get(SessionInterface::class)
             ->getFlashBag()
-            ->all();
+            ->all()
+        ;
 
         static::assertInstanceOf(FlashMessageService::class, $result);
         static::assertCount(0, $allFlashMessages);
@@ -307,7 +335,8 @@ class FlashMessageServiceTest extends KernelTestCase
 
         static::$container
             ->get(FlashMessageService::class)
-            ->addFlashMessages($messages);
+            ->addFlashMessages($messages)
+        ;
     }
 
     /**
@@ -327,7 +356,8 @@ class FlashMessageServiceTest extends KernelTestCase
 
         static::$container
             ->get(FlashMessageService::class)
-            ->addFlashMessages($messages);
+            ->addFlashMessages($messages)
+        ;
     }
 
     /**
@@ -341,12 +371,14 @@ class FlashMessageServiceTest extends KernelTestCase
     {
         $result = static::$container
             ->get(FlashMessageService::class)
-            ->addFlashMessages($messages);
+            ->addFlashMessages($messages)
+        ;
 
         $allFlashMessages = static::$container
             ->get(SessionInterface::class)
             ->getFlashBag()
-            ->all();
+            ->all()
+        ;
 
         static::assertInstanceOf(FlashMessageService::class, $result);
         static::assertSame($expectedMessages, $allFlashMessages);
@@ -367,12 +399,14 @@ class FlashMessageServiceTest extends KernelTestCase
 
         $result = static::$container
             ->get(FlashMessageService::class)
-            ->addFlashMessages($messages);
+            ->addFlashMessages($messages)
+        ;
 
         $allFlashMessages = static::$container
             ->get(SessionInterface::class)
             ->getFlashBag()
-            ->all();
+            ->all()
+        ;
 
         static::assertInstanceOf(FlashMessageService::class, $result);
         static::assertSame($expectedMessages, $allFlashMessages);
@@ -385,12 +419,14 @@ class FlashMessageServiceTest extends KernelTestCase
     {
         $result = static::$container
             ->get(FlashMessageService::class)
-            ->addPositiveFlashMessages([]);
+            ->addPositiveFlashMessages([])
+        ;
 
         $allFlashMessages = static::$container
             ->get(SessionInterface::class)
             ->getFlashBag()
-            ->all();
+            ->all()
+        ;
 
         static::assertInstanceOf(FlashMessageService::class, $result);
         static::assertCount(0, $allFlashMessages);
@@ -407,12 +443,14 @@ class FlashMessageServiceTest extends KernelTestCase
     {
         $result = static::$container
             ->get(FlashMessageService::class)
-            ->addPositiveFlashMessages($messages);
+            ->addPositiveFlashMessages($messages)
+        ;
 
         $allFlashMessages = static::$container
             ->get(SessionInterface::class)
             ->getFlashBag()
-            ->all();
+            ->all()
+        ;
 
         static::assertInstanceOf(FlashMessageService::class, $result);
         static::assertSame($expectedMessages, $allFlashMessages);
@@ -433,12 +471,14 @@ class FlashMessageServiceTest extends KernelTestCase
 
         $result = static::$container
             ->get(FlashMessageService::class)
-            ->addPositiveFlashMessages($messages);
+            ->addPositiveFlashMessages($messages)
+        ;
 
         $allFlashMessages = static::$container
             ->get(SessionInterface::class)
             ->getFlashBag()
-            ->all();
+            ->all()
+        ;
 
         static::assertInstanceOf(FlashMessageService::class, $result);
         static::assertSame($expectedMessages, $allFlashMessages);
@@ -451,12 +491,14 @@ class FlashMessageServiceTest extends KernelTestCase
     {
         $result = static::$container
             ->get(FlashMessageService::class)
-            ->addNegativeFlashMessages([]);
+            ->addNegativeFlashMessages([])
+        ;
 
         $allFlashMessages = static::$container
             ->get(SessionInterface::class)
             ->getFlashBag()
-            ->all();
+            ->all()
+        ;
 
         static::assertInstanceOf(FlashMessageService::class, $result);
         static::assertCount(0, $allFlashMessages);
@@ -473,12 +515,14 @@ class FlashMessageServiceTest extends KernelTestCase
     {
         $result = static::$container
             ->get(FlashMessageService::class)
-            ->addNegativeFlashMessages($messages);
+            ->addNegativeFlashMessages($messages)
+        ;
 
         $allFlashMessages = static::$container
             ->get(SessionInterface::class)
             ->getFlashBag()
-            ->all();
+            ->all()
+        ;
 
         static::assertInstanceOf(FlashMessageService::class, $result);
         static::assertSame($expectedMessages, $allFlashMessages);
@@ -499,12 +543,14 @@ class FlashMessageServiceTest extends KernelTestCase
 
         $result = static::$container
             ->get(FlashMessageService::class)
-            ->addNegativeFlashMessages($messages);
+            ->addNegativeFlashMessages($messages)
+        ;
 
         $allFlashMessages = static::$container
             ->get(SessionInterface::class)
             ->getFlashBag()
-            ->all();
+            ->all()
+        ;
 
         static::assertInstanceOf(FlashMessageService::class, $result);
         static::assertSame($expectedMessages, $allFlashMessages);
@@ -517,12 +563,14 @@ class FlashMessageServiceTest extends KernelTestCase
     {
         $result = static::$container
             ->get(FlashMessageService::class)
-            ->addNeutralFlashMessages([]);
+            ->addNeutralFlashMessages([])
+        ;
 
         $allFlashMessages = static::$container
             ->get(SessionInterface::class)
             ->getFlashBag()
-            ->all();
+            ->all()
+        ;
 
         static::assertInstanceOf(FlashMessageService::class, $result);
         static::assertCount(0, $allFlashMessages);
@@ -539,12 +587,14 @@ class FlashMessageServiceTest extends KernelTestCase
     {
         $result = static::$container
             ->get(FlashMessageService::class)
-            ->addNeutralFlashMessages($messages);
+            ->addNeutralFlashMessages($messages)
+        ;
 
         $allFlashMessages = static::$container
             ->get(SessionInterface::class)
             ->getFlashBag()
-            ->all();
+            ->all()
+        ;
 
         static::assertInstanceOf(FlashMessageService::class, $result);
         static::assertSame($expectedMessages, $allFlashMessages);
@@ -565,12 +615,14 @@ class FlashMessageServiceTest extends KernelTestCase
 
         $result = static::$container
             ->get(FlashMessageService::class)
-            ->addNeutralFlashMessages($messages);
+            ->addNeutralFlashMessages($messages)
+        ;
 
         $allFlashMessages = static::$container
             ->get(SessionInterface::class)
             ->getFlashBag()
-            ->all();
+            ->all()
+        ;
 
         static::assertInstanceOf(FlashMessageService::class, $result);
         static::assertSame($expectedMessages, $allFlashMessages);
@@ -587,7 +639,8 @@ class FlashMessageServiceTest extends KernelTestCase
     {
         $flashBag = static::$container
             ->get(SessionInterface::class)
-            ->getFlashBag();
+            ->getFlashBag()
+        ;
 
         foreach ($messages as $type => $message) {
             $flashBag->add($type, $message);
@@ -595,7 +648,8 @@ class FlashMessageServiceTest extends KernelTestCase
 
         $has = static::$container
             ->get(FlashMessageService::class)
-            ->hasFlashMessages();
+            ->hasFlashMessages()
+        ;
 
         static::assertSame($has, $expected);
     }
@@ -1474,14 +1528,5 @@ class FlashMessageServiceTest extends KernelTestCase
             ],
             true,
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function setUp()
-    {
-        parent::setUp();
-        static::bootKernel();
     }
 }

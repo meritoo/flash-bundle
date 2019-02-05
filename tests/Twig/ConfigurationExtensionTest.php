@@ -18,6 +18,9 @@ use Meritoo\FlashBundle\Twig\ConfigurationExtension;
  *
  * @author    Meritoo <github@meritoo.pl>
  * @copyright Meritoo
+ *
+ * @internal
+ * @coversNothing
  */
 class ConfigurationExtensionTest extends BaseTwigExtensionTestCase
 {
@@ -28,7 +31,8 @@ class ConfigurationExtensionTest extends BaseTwigExtensionTestCase
     {
         $functions = static::$container
             ->get($this->getExtensionNamespace())
-            ->getFunctions();
+            ->getFunctions()
+        ;
 
         static::assertCount(5, $functions);
     }

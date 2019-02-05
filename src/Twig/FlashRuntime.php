@@ -114,7 +114,8 @@ class FlashRuntime implements RuntimeExtensionInterface
 
         $this
             ->flashMessageService
-            ->prepareMessages($messages);
+            ->prepareMessages($messages)
+        ;
 
         $parameters = [
             'messages'                => $messages,
@@ -123,7 +124,8 @@ class FlashRuntime implements RuntimeExtensionInterface
 
         return $this
             ->templatingEngine
-            ->render($this->manyMessagesTemplatePath, $parameters);
+            ->render($this->manyMessagesTemplatePath, $parameters)
+        ;
     }
 
     /**
@@ -140,16 +142,18 @@ class FlashRuntime implements RuntimeExtensionInterface
             $hasSession = $request->hasPreviousSession();
 
             if ($hasSession) {
-                /* @var Session $session */
+                /** @var Session $session */
                 $session = $this->session;
 
                 $messages = $session
                     ->getFlashBag()
-                    ->all();
+                    ->all()
+                ;
 
                 $this
                     ->flashMessageService
-                    ->prepareMessages($messages);
+                    ->prepareMessages($messages)
+                ;
             }
         }
 

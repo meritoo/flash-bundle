@@ -96,7 +96,8 @@ class ConfigurationRuntime implements RuntimeExtensionInterface
                 $positiveFlashMessageType,
                 $negativeFlashMessageType,
                 $neutralFlashMessageType,
-            ]);
+            ])
+        ;
 
         $this->positiveFlashMessageType = $positiveFlashMessageType;
         $this->negativeFlashMessageType = $negativeFlashMessageType;

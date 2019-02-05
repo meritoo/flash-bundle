@@ -25,10 +25,22 @@ use Symfony\Component\Templating\EngineInterface;
  *
  * @author    Meritoo <github@meritoo.pl>
  * @copyright Meritoo
+ *
+ * @internal
+ * @coversNothing
  */
 class FlashRuntimeTest extends KernelTestCase
 {
     use BaseTestCaseTrait;
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        static::bootKernel();
+    }
 
     /**
      * @covers \Meritoo\FlashBundle\Twig\FlashRuntime::__construct
@@ -56,7 +68,8 @@ class FlashRuntimeTest extends KernelTestCase
 
         $this
             ->getFlashRuntime($messages)
-            ->renderFlashMessagesFromSession();
+            ->renderFlashMessagesFromSession()
+        ;
     }
 
     /**
@@ -76,7 +89,8 @@ class FlashRuntimeTest extends KernelTestCase
 
         $this
             ->getFlashRuntime($messages)
-            ->renderFlashMessagesFromSession();
+            ->renderFlashMessagesFromSession()
+        ;
     }
 
     /**
@@ -90,7 +104,8 @@ class FlashRuntimeTest extends KernelTestCase
     {
         $rendered = $this
             ->getFlashRuntime($messages)
-            ->renderFlashMessagesFromSession();
+            ->renderFlashMessagesFromSession()
+        ;
 
         static::assertSame($expected, $rendered);
     }
@@ -110,7 +125,8 @@ class FlashRuntimeTest extends KernelTestCase
 
         $rendered = $this
             ->getFlashRuntime($messages)
-            ->renderFlashMessagesFromSession();
+            ->renderFlashMessagesFromSession()
+        ;
 
         static::assertSame($expected, $rendered);
     }
@@ -129,7 +145,8 @@ class FlashRuntimeTest extends KernelTestCase
 
         static::$container
             ->get(FlashRuntime::class)
-            ->renderFlashMessages($messages);
+            ->renderFlashMessages($messages)
+        ;
     }
 
     /**
@@ -150,7 +167,8 @@ class FlashRuntimeTest extends KernelTestCase
 
         static::$container
             ->get(FlashRuntime::class)
-            ->renderFlashMessages($messages);
+            ->renderFlashMessages($messages)
+        ;
     }
 
     /**
@@ -166,7 +184,8 @@ class FlashRuntimeTest extends KernelTestCase
     {
         $rendered = static::$container
             ->get(FlashRuntime::class)
-            ->renderFlashMessages($messages);
+            ->renderFlashMessages($messages)
+        ;
 
         static::assertSame($expected, $rendered);
     }
@@ -188,7 +207,8 @@ class FlashRuntimeTest extends KernelTestCase
 
         $rendered = static::$container
             ->get(FlashRuntime::class)
-            ->renderFlashMessages($messages);
+            ->renderFlashMessages($messages)
+        ;
 
         static::assertSame($expected, $rendered);
     }
@@ -459,15 +479,6 @@ class FlashRuntimeTest extends KernelTestCase
     }
 
     /**
-     * {@inheritdoc}
-     */
-    protected function setUp()
-    {
-        parent::setUp();
-        static::bootKernel();
-    }
-
-    /**
      * Returns instance of FlashRuntime with all related and mocked instances
      *
      * @param array $messagesForSession Flash messages to add
@@ -480,13 +491,14 @@ class FlashRuntimeTest extends KernelTestCase
 
         $flashMessageService = static::$container
             ->get(FlashMessageService::class)
-            ->addFlashMessages($messagesForSession);
+            ->addFlashMessages($messagesForSession)
+        ;
 
         $requestStack = $this->createMock(RequestStack::class);
         $requestStack->method('getCurrentRequest')->willReturn($request);
 
         $session = static::$container->get('session');
-        /* @var EngineInterface $twigEngine */
+        /** @var EngineInterface $twigEngine */
         $twigEngine = static::$container->get('templating');
 
         $manyMessagesTemplatePath = static::$container->getParameter('meritoo_flash.templates.many');

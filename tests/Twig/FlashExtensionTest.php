@@ -19,9 +19,21 @@ use Twig\Error\RuntimeError;
  *
  * @author    Meritoo <github@meritoo.pl>
  * @copyright Meritoo
+ *
+ * @internal
+ * @coversNothing
  */
 class FlashExtensionTest extends BaseTwigExtensionTestCase
 {
+    /**
+     * {@inheritdoc}
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        static::bootKernel();
+    }
+
     /**
      * @covers \Meritoo\FlashBundle\Twig\FlashExtension::getFunctions
      */
@@ -29,7 +41,8 @@ class FlashExtensionTest extends BaseTwigExtensionTestCase
     {
         $functions = static::$container
             ->get($this->getExtensionNamespace())
-            ->getFunctions();
+            ->getFunctions()
+        ;
 
         static::assertCount(3, $functions);
     }
@@ -320,14 +333,5 @@ class FlashExtensionTest extends BaseTwigExtensionTestCase
     protected function getExtensionNamespace(): string
     {
         return FlashExtension::class;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function setUp()
-    {
-        parent::setUp();
-        static::bootKernel();
     }
 }

@@ -19,6 +19,9 @@ use Meritoo\FlashBundle\Exception\UnavailableFlashMessageTypeException;
  *
  * @author    Meritoo <github@meritoo.pl>
  * @copyright Meritoo
+ *
+ * @internal
+ * @coversNothing
  */
 class UnavailableFlashMessageTypeExceptionTest extends BaseTestCase
 {

@@ -101,15 +101,11 @@ class FlashMessageService extends BaseService
             return;
         }
 
-        /*
-         * Verify types of flash messages
-         */
+        // Verify types of flash messages
         $types = array_keys($messages);
         $this->verifyFlashMessageTypes($types);
 
-        /*
-         * Make sure that messages of given type are passed as an array
-         */
+        // Make sure that messages of given type are passed as an array
         $this->makeArrayOfMessages($messages);
     }
 
@@ -131,18 +127,14 @@ class FlashMessageService extends BaseService
             return $this;
         }
 
-        /*
-         * Prepare the flash messages
-         */
+        // Prepare the flash messages
         $this->prepareMessages($messages);
 
-        /* @var Session $session */
+        /** @var Session $session */
         $session = $this->session;
         $flashBag = $session->getFlashBag();
 
-        /*
-         * Add flash messages (to bag/container stored in session)
-         */
+        // Add flash messages (to bag/container stored in session)
         foreach ($messages as $type => $messagesOfType) {
             foreach ($messagesOfType as $message) {
                 $flashBag->add($type, $message);
@@ -200,9 +192,7 @@ class FlashMessageService extends BaseService
      */
     public function verifyFlashMessageType(string $flashMessageType): FlashMessageService
     {
-        /*
-         * Oops, type of flash message is not correct
-         */
+        // Oops, type of flash message is not correct
         if (false === $this->isAvailableFlashMessageType($flashMessageType)) {
             throw UnavailableFlashMessageTypeException::create($flashMessageType, $this->availableFlashMessageTypes);
         }
@@ -240,7 +230,7 @@ class FlashMessageService extends BaseService
      */
     public function hasFlashMessages(): bool
     {
-        /* @var Session $session */
+        /** @var Session $session */
         $session = $this->session;
         $allMessages = $session->getFlashBag()->peekAll();
 
