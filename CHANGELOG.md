@@ -10,6 +10,7 @@ Mechanisms, extensions and resources related to Symfony Flash Messages
 3. Travis CI > run many tasks using Phing (instead of PHPUnit only)
 4. Fix integration with [Coveralls](https://www.coveralls.io) (available as the badge in [README.md](README.md))
 5. Implement [PHPStan](https://github.com/phpstan/phpstan)
+6. Implement [Psalm](https://github.com/vimeo/psalm)
 
 # 0.1.2
 
