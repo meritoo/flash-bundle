@@ -8,6 +8,7 @@ Mechanisms, extensions and resources related to Symfony Flash Messages
 1. Phing > update configuration
 2. Docker > docker-compose.yml > add "phpunit" service > used to run PHPUnit's tests
 3. Travis CI > run many tasks using Phing (instead of PHPUnit only)
+4. Fix integration with [Coveralls](https://www.coveralls.io) (available as the badge in [README.md](README.md))
 
 # 0.1.2
 
