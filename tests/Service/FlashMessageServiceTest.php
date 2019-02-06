@@ -24,7 +24,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
  * @copyright Meritoo
  *
  * @internal
- * @coversNothing
+ * @covers \Meritoo\FlashBundle\Service\FlashMessageService
  */
 class FlashMessageServiceTest extends KernelTestCase
 {

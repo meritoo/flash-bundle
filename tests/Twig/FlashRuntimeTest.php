@@ -27,7 +27,7 @@ use Symfony\Component\Templating\EngineInterface;
  * @copyright Meritoo
  *
  * @internal
- * @coversNothing
+ * @covers    \Meritoo\FlashBundle\Twig\FlashRuntime
  */
 class FlashRuntimeTest extends KernelTestCase
 {

@@ -23,7 +23,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
  * @copyright Meritoo
  *
  * @internal
- * @coversNothing
+ * @covers    \Meritoo\FlashBundle\Twig\ConfigurationRuntime
  */
 class ConfigurationRuntimeTest extends KernelTestCase
 {

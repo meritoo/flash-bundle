@@ -20,7 +20,7 @@ use Meritoo\FlashBundle\Twig\ConfigurationExtension;
  * @copyright Meritoo
  *
  * @internal
- * @coversNothing
+ * @covers    \Meritoo\FlashBundle\Twig\ConfigurationExtension
  */
 class ConfigurationExtensionTest extends BaseTwigExtensionTestCase
 {

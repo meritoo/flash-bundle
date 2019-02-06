@@ -21,7 +21,7 @@ use Twig\Error\RuntimeError;
  * @copyright Meritoo
  *
  * @internal
- * @coversNothing
+ * @covers    \Meritoo\FlashBundle\Twig\FlashExtension
  */
 class FlashExtensionTest extends BaseTwigExtensionTestCase
 {

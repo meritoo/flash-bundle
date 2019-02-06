@@ -21,7 +21,7 @@ use Meritoo\FlashBundle\Exception\UnavailableFlashMessageTypeException;
  * @copyright Meritoo
  *
  * @internal
- * @coversNothing
+ * @covers    \Meritoo\FlashBundle\Exception\UnavailableFlashMessageTypeException
  */
 class UnavailableFlashMessageTypeExceptionTest extends BaseTestCase
 {
