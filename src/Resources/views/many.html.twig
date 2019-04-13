@@ -1,4 +1,4 @@
-{% spaceless %}
+{% filter spaceless %}
     {% if messages is not empty %}
         <div class="{{ meritoo_flash_container_css_classes() }}">
             {% for type, messagesOfType in messages %}
@@ -8,4 +8,4 @@
             {% endfor %}
         </div>
     {% endif %}
-{% endspaceless %}
+{% endfilter %}
