@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- https://phpunit.readthedocs.io/en/latest/configuration.html -->
+<!-- https://phpunit.readthedocs.io/en/8.0/ -->
 <phpunit
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/7.4/phpunit.xsd"
+        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/8.0/phpunit.xsd"
         backupGlobals="false"
         bootstrap="vendor/autoload.php"
         colors="true"
+        executionOrder="random"
         verbose="true"
 >
     <php>
@@ -30,12 +31,12 @@
         </whitelist>
     </filter>
 
-    <!--<listeners>-->
-    <!--<listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener"/>-->
-    <!--</listeners>-->
+    <listeners>
+        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener"/>
+    </listeners>
 
     <logging>
-        <log type="coverage-html" target="build/reports/phpunit_coverage/html"/>
+        <log type="coverage-html" target="build/reports/phpunit-coverage/html"/>
         <log type="coverage-xml" target="build/reports/infection/coverage-xml"/>
         <log type="junit" target="build/reports/infection/phpunit.junit.xml"/>
         <log type="coverage-clover" target="build/reports/coveralls/clover.xml"/>

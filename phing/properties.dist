@@ -50,8 +50,7 @@ dir.tests = ${project.basedir}/tests
 #
 dir.build = ${project.basedir}/build
 dir.reports = ${dir.build}/reports
-dir.reports.pdepend = ${dir.reports}/pdepend
-dir.reports.coverage = ${dir.reports}/phpunit_coverage
+dir.reports.coverage = ${dir.reports}/phpunit-coverage
 
 # Data directories
 #
@@ -72,6 +71,7 @@ dir.docker.logs = ${dir.docker}/logs/nginx
 # - PHPStan
 #
 check.phpstan.command = ./vendor/bin/phpstan analyse
+check.php_coveralls.command = ./vendor/bin/php-coveralls --ansi -v
 
 # --------------------------------------------------------------------------------
 # Testing
@@ -90,4 +90,4 @@ tests.database = ${dir.data.temporary}/database.sqlite
 # - Infection (mutation tests)
 #
 tests.phpunit.command = ./vendor/bin/phpunit --verbose
-tests.mutation.command = ./vendor/bin/infection --threads=5 --coverage=build/reports/infection
+tests.mutation.command = ./vendor/bin/infection --ansi --threads=5 --coverage=build/reports/infection

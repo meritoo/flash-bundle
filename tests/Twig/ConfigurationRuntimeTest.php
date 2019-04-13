@@ -32,7 +32,7 @@ class ConfigurationRuntimeTest extends KernelTestCase
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         static::bootKernel();
