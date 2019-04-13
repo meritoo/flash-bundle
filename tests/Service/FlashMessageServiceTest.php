@@ -24,7 +24,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
  * @copyright Meritoo
  *
  * @internal
- * @covers \Meritoo\FlashBundle\Service\FlashMessageService
+ * @covers    \Meritoo\FlashBundle\Service\FlashMessageService
  */
 class FlashMessageServiceTest extends KernelTestCase
 {
@@ -115,7 +115,7 @@ class FlashMessageServiceTest extends KernelTestCase
         static::$container
             ->get(FlashMessageService::class)
             ->prepareMessages($messages)
-    ;
+        ;
 
         static::assertSame($expectedMessages, $messages);
     }
@@ -136,7 +136,7 @@ class FlashMessageServiceTest extends KernelTestCase
         static::$container
             ->get(FlashMessageService::class)
             ->prepareMessages($messages)
-    ;
+        ;
 
         static::assertSame($expectedMessages, $messages);
     }
