@@ -279,6 +279,11 @@ class FlashRuntimeTest extends KernelTestCase
         $messageTemplate = '<p class="message %s-message-type single-row" role="alert">%s</p>';
 
         yield[
+            [],
+            '',
+        ];
+
+        yield[
             [
                 'positive' => 'Data saved',
             ],
@@ -343,6 +348,11 @@ class FlashRuntimeTest extends KernelTestCase
     {
         $containerTemplate = '<div class="alerts">%s</div>';
         $messageTemplate = '<div class="alert alert-%s" role="alert">%s</div>';
+
+        yield[
+            [],
+            '',
+        ];
 
         yield[
             [

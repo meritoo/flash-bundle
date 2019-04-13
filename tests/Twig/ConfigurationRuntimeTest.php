@@ -180,6 +180,78 @@ class ConfigurationRuntimeTest extends KernelTestCase
         static::assertSame($expected, $cssClasses);
     }
 
+    public function testGetPositiveFlashMessageTypeUsingDefaults(): void
+    {
+        static::bootKernel([
+            'environment' => 'defaults',
+        ]);
+
+        $flashMessageType = static::$container
+            ->get(ConfigurationRuntime::class)
+            ->getPositiveFlashMessageType()
+        ;
+
+        static::assertSame('success', $flashMessageType);
+    }
+
+    public function testGetPositiveFlashMessageTypeUsingTestEnvironment(): void
+    {
+        $flashMessageType = static::$container
+            ->get(ConfigurationRuntime::class)
+            ->getPositiveFlashMessageType()
+        ;
+
+        static::assertSame('positive', $flashMessageType);
+    }
+
+    public function testGetNegativeFlashMessageTypeUsingDefaults(): void
+    {
+        static::bootKernel([
+            'environment' => 'defaults',
+        ]);
+
+        $flashMessageType = static::$container
+            ->get(ConfigurationRuntime::class)
+            ->getNegativeFlashMessageType()
+        ;
+
+        static::assertSame('danger', $flashMessageType);
+    }
+
+    public function testGeNegativeFlashMessageTypeUsingTestEnvironment(): void
+    {
+        $flashMessageType = static::$container
+            ->get(ConfigurationRuntime::class)
+            ->getNegativeFlashMessageType()
+        ;
+
+        static::assertSame('negative', $flashMessageType);
+    }
+
+    public function testGetNeutralFlashMessageTypeUsingDefaults(): void
+    {
+        static::bootKernel([
+            'environment' => 'defaults',
+        ]);
+
+        $flashMessageType = static::$container
+            ->get(ConfigurationRuntime::class)
+            ->getNeutralFlashMessageType()
+        ;
+
+        static::assertSame('info', $flashMessageType);
+    }
+
+    public function testGeNeutralFlashMessageTypeUsingTestEnvironment(): void
+    {
+        $flashMessageType = static::$container
+            ->get(ConfigurationRuntime::class)
+            ->getNeutralFlashMessageType()
+        ;
+
+        static::assertSame('information', $flashMessageType);
+    }
+
     /**
      * Provide unavailable type of flash message
      *

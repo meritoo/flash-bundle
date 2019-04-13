@@ -11,6 +11,8 @@ Mechanisms, extensions and resources related to Symfony Flash Messages
 4. Fix integration with [Coveralls](https://www.coveralls.io) (available as the badge in [README.md](README.md))
 5. Implement [PHPStan](https://github.com/phpstan/phpstan)
 6. Implement [Psalm](https://github.com/vimeo/psalm)
+7. Fix "The spaceless tag is deprecated since Twig 2.7, use the spaceless filter instead" deprecation notice
+8. PHPUnit > increase code coverage
 
 # 0.1.2
 
