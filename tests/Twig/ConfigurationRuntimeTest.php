@@ -30,15 +30,6 @@ class ConfigurationRuntimeTest extends KernelTestCase
     use BaseTestCaseTrait;
 
     /**
-     * {@inheritdoc}
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-        static::bootKernel();
-    }
-
-    /**
      * @covers \Meritoo\FlashBundle\Twig\ConfigurationRuntime::__construct
      */
     public function testConstructor(): void
@@ -368,5 +359,14 @@ class ConfigurationRuntimeTest extends KernelTestCase
             'info',
             'message message-type single-row',
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+        static::bootKernel();
     }
 }

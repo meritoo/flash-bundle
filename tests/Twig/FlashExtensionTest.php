@@ -26,15 +26,6 @@ use Twig\Error\RuntimeError;
 class FlashExtensionTest extends BaseTwigExtensionTestCase
 {
     /**
-     * {@inheritdoc}
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-        static::bootKernel();
-    }
-
-    /**
      * @covers \Meritoo\FlashBundle\Twig\FlashExtension::getFunctions
      */
     public function testGetFunctions(): void
@@ -325,6 +316,15 @@ class FlashExtensionTest extends BaseTwigExtensionTestCase
                 . sprintf($messageTemplate, 'warning', 'Price cannot be negative')
             ),
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+        static::bootKernel();
     }
 
     /**

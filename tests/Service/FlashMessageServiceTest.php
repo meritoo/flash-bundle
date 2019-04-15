@@ -31,15 +31,6 @@ class FlashMessageServiceTest extends KernelTestCase
     use BaseTestCaseTrait;
 
     /**
-     * {@inheritdoc}
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-        static::bootKernel();
-    }
-
-    /**
      * @covers \Meritoo\FlashBundle\Service\FlashMessageService::__construct
      */
     public function testConstructor(): void
@@ -1528,5 +1519,14 @@ class FlashMessageServiceTest extends KernelTestCase
             ],
             true,
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+        static::bootKernel();
     }
 }

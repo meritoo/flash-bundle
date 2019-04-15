@@ -34,15 +34,6 @@ class FlashRuntimeTest extends KernelTestCase
     use BaseTestCaseTrait;
 
     /**
-     * {@inheritdoc}
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-        static::bootKernel();
-    }
-
-    /**
      * @covers \Meritoo\FlashBundle\Twig\FlashRuntime::__construct
      */
     public function testConstructor(): void
@@ -486,6 +477,15 @@ class FlashRuntimeTest extends KernelTestCase
             ],
             true,
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+        static::bootKernel();
     }
 
     /**
