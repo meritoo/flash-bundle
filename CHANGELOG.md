@@ -14,6 +14,7 @@ Mechanisms, extensions and resources related to Symfony Flash Messages
 7. Fix "The spaceless tag is deprecated since Twig 2.7, use the spaceless filter instead" deprecation notice
 8. PHPUnit > increase code coverage
 9. PHP Coding Standards Fixer > update configuration
+10. Phing > tests > add task for Psalm (https://psalm.dev)
 
 # 0.1.2
 
