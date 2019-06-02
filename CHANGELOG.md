@@ -15,6 +15,9 @@ Mechanisms, extensions and resources related to Symfony Flash Messages
 8. PHPUnit > increase code coverage
 9. PHP Coding Standards Fixer > update configuration
 10. Phing > tests > add task for Psalm (https://psalm.dev)
+11. Docker > use images (instead of Dockerfiles)
+12. composer > squizlabs/php_codesniffer package > use ^3.4 (instead of ^2.9)
+13. Update Kernel used by tests
 
 # 0.1.2
 
