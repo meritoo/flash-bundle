@@ -19,6 +19,7 @@ use Meritoo\FlashBundle\Twig\FlashRuntime;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Twig\Environment;
 
 /**
@@ -236,9 +237,9 @@ class FlashRuntimeTest extends KernelTestCase
     /**
      * Provide flash messages using test environment and unavailable flash message type
      *
-     * @return \Generator
+     * @return Generator
      */
-    public function provideFlashMessagesUsingTestEnvironmentAndUnavailableFlashMessageType(): \Generator
+    public function provideFlashMessagesUsingTestEnvironmentAndUnavailableFlashMessageType(): Generator
     {
         yield[
             [
@@ -263,9 +264,9 @@ class FlashRuntimeTest extends KernelTestCase
     /**
      * Provide flash messages for session using test environment
      *
-     * @return \Generator
+     * @return Generator
      */
-    public function provideFlashMessagesUsingTestEnvironment(): \Generator
+    public function provideFlashMessagesUsingTestEnvironment(): Generator
     {
         $containerTemplate = '<div class="all-flash-messages">%s</div>';
         $messageTemplate = '<p class="message %s-message-type single-row" role="alert">%s</p>';
@@ -334,9 +335,9 @@ class FlashRuntimeTest extends KernelTestCase
     /**
      * Provide flash messages for session using default configuration
      *
-     * @return \Generator
+     * @return Generator
      */
-    public function provideFlashMessagesUsingDefaults(): \Generator
+    public function provideFlashMessagesUsingDefaults(): Generator
     {
         $containerTemplate = '<div class="alerts">%s</div>';
         $messageTemplate = '<div class="alert alert-%s" role="alert">%s</div>';
@@ -405,9 +406,9 @@ class FlashRuntimeTest extends KernelTestCase
     /**
      * Provide flash messages to verify existence
      *
-     * @return \Generator
+     * @return Generator
      */
-    public function provideFlashMessagesToVerifyExistenceUsingTestEnvironment(): \Generator
+    public function provideFlashMessagesToVerifyExistenceUsingTestEnvironment(): Generator
     {
         yield[
             [],
@@ -444,9 +445,9 @@ class FlashRuntimeTest extends KernelTestCase
     /**
      * Provide flash messages to verify existence using default configuration
      *
-     * @return \Generator
+     * @return Generator
      */
-    public function provideFlashMessagesToVerifyExistenceUsingDefaults(): \Generator
+    public function provideFlashMessagesToVerifyExistenceUsingDefaults(): Generator
     {
         yield[
             [],
@@ -508,6 +509,7 @@ class FlashRuntimeTest extends KernelTestCase
         $requestStack = $this->createMock(RequestStack::class);
         $requestStack->method('getCurrentRequest')->willReturn($request);
 
+        /** @var SessionInterface $session */
         $session = static::$container->get('session');
 
         /** @var Environment $twig */
