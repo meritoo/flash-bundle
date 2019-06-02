@@ -14,7 +14,7 @@ use Meritoo\FlashBundle\Service\FlashMessageService;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\Templating\EngineInterface;
+use Twig\Environment;
 use Twig\Extension\RuntimeExtensionInterface;
 
 /**
@@ -48,11 +48,11 @@ class FlashRuntime implements RuntimeExtensionInterface
     private $session;
 
     /**
-     * Engine that render templates
+     * The Twig
      *
-     * @var EngineInterface
+     * @var Environment
      */
-    private $templatingEngine;
+    private $twig;
 
     /**
      * Path of template for many flash messages (with container)
@@ -74,7 +74,7 @@ class FlashRuntime implements RuntimeExtensionInterface
      * @param FlashMessageService $flashMessageService        Service related to flash messages
      * @param RequestStack        $requestStack               Request stack that controls the lifecycle of requests
      * @param SessionInterface    $session                    The session
-     * @param EngineInterface     $templatingEngine           Engine that render templates
+     * @param Environment         $twig                       The Twig
      * @param string              $manyMessagesTemplatePath   Path of template for many flash messages (with container)
      * @param string              $singleMessagesTemplatePath Path of template for single/one flash message only
      */
@@ -82,14 +82,14 @@ class FlashRuntime implements RuntimeExtensionInterface
         FlashMessageService $flashMessageService,
         RequestStack $requestStack,
         SessionInterface $session,
-        EngineInterface $templatingEngine,
+        Environment $twig,
         string $manyMessagesTemplatePath,
         string $singleMessagesTemplatePath
     ) {
         $this->flashMessageService = $flashMessageService;
         $this->requestStack = $requestStack;
         $this->session = $session;
-        $this->templatingEngine = $templatingEngine;
+        $this->twig = $twig;
         $this->manyMessagesTemplatePath = $manyMessagesTemplatePath;
         $this->singleMessagesTemplatePath = $singleMessagesTemplatePath;
     }
@@ -123,7 +123,7 @@ class FlashRuntime implements RuntimeExtensionInterface
         ];
 
         return $this
-            ->templatingEngine
+            ->twig
             ->render($this->manyMessagesTemplatePath, $parameters)
         ;
     }

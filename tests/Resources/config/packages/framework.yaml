@@ -1,6 +1,4 @@
 framework:
-    templating:
-        engines: [twig]
     ide: phpstorm
     secret: '%env(APP_SECRET)%'
     default_locale: '%env(APP_DEFAULT_LOCALE)%'

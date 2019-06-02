@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Meritoo\Test\FlashBundle\Twig;
 
+use Generator;
 use Meritoo\Common\Traits\Test\Base\BaseTestCaseTrait;
 use Meritoo\Common\Type\OopVisibilityType;
 use Meritoo\FlashBundle\Exception\UnavailableFlashMessageTypeException;
@@ -18,7 +19,7 @@ use Meritoo\FlashBundle\Twig\FlashRuntime;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Templating\EngineInterface;
+use Twig\Environment;
 
 /**
  * Test case for the runtime class related to FlashExtension Twig Extension
@@ -508,8 +509,9 @@ class FlashRuntimeTest extends KernelTestCase
         $requestStack->method('getCurrentRequest')->willReturn($request);
 
         $session = static::$container->get('session');
-        /** @var EngineInterface $twigEngine */
-        $twigEngine = static::$container->get('templating');
+
+        /** @var Environment $twig */
+        $twig = static::$container->get('twig');
 
         $manyMessagesTemplatePath = static::$container->getParameter('meritoo_flash.templates.many');
         $singleMessagesTemplatePath = static::$container->getParameter('meritoo_flash.templates.single');
@@ -518,7 +520,7 @@ class FlashRuntimeTest extends KernelTestCase
             $flashMessageService,
             $requestStack,
             $session,
-            $twigEngine,
+            $twig,
             $manyMessagesTemplatePath,
             $singleMessagesTemplatePath
         );

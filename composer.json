@@ -12,7 +12,6 @@
     ],
     "require": {
         "meritoo/common-bundle": "^0.1.0",
-        "symfony/templating": "^4.1",
         "symfony/twig-bundle": "^4.1"
     },
     "require-dev": {
